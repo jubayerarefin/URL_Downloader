@@ -1,5 +1,7 @@
 import urllib
 import sys
+import platform
+from subprocess import call
 
 # __name__ = 'Parser'
 __author__ = 'Jubayer Arefin'
@@ -40,6 +42,8 @@ class Parser(object):
                 print url.split('/')[-1]
                 opener.retrieve(url, url.split('/')[-1])
                 print "is downloaded"
+                if platform.system().lower() is 'linux':
+                    call(["notify-send", url + " is downloaded."])
             else:
                 print "url(s) are not valid. Please provide valid url that starts with http: or https:"
 
